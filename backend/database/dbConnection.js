@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-export const dbConnection = () =>{
-    mongoose.connect(process.env.MONGODB_URI,{
-        dbName: "SCHOOL MANAGEMENT SYSTEM", // database name
-})
-.then(() =>{
-    console.log("Database connected")
-})
-.catch((err) =>{
-    console.log("Error occured when connecting with database")
+dotenv.config(); // Load environment variables
 
-    console.log(err)
-})
-     
-}
+export const dbConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      dbName: "SCHOOL_MANAGEMENT_SYSTEM", // ✅ No spaces in DB name
+    });
+
+    console.log("✅ Database connected successfully!");
+  } catch (error) {
+    console.error("❌ Error connecting to database:", error.message);
+    process.exit(1); // Stop the server if DB connection fails
+  }
+};

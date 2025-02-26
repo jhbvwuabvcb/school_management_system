@@ -1,5 +1,6 @@
 // models/eventsSchema.js
 import mongoose from "mongoose";
+import validator from "validator";
 
 const eventsSchema = new mongoose.Schema({
     name: {
